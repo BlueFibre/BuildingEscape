@@ -1,6 +1,8 @@
 // ©Copyright BlueFibreGames 2018. All rights reserved.
 
 #include "OpenDoor.h"
+#include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
 #include "Gameframework/Actor.h"
 
 // Sets default values for this component's properties
@@ -12,6 +14,15 @@ UOpenDoor::UOpenDoor()
 	// ...
 }
 
+
+// Called when the game starts
+void UOpenDoor::BeginPlay()
+{
+	Super::BeginPlay();
+
+	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
+	
+}
 
 
 void UOpenDoor::OpenDoor()
@@ -26,13 +37,6 @@ void UOpenDoor::OpenDoor()
 	Owner->SetActorRotation( NewRotation );
 }
 
-// Called when the game starts
-void UOpenDoor::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-}
 
 // Called every frame
 void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
