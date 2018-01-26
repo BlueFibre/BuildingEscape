@@ -41,10 +41,15 @@ private:
 
 	UPROPERTY( EditAnywhere )
 		//Set to 0.0 for a door that doesn't close
-		float DoorCloseDelay = 5.0f; 
+		float DoorCloseDelay = 3.0f; 
+
+	UPROPERTY( EditAnywhere )
+		//Set to 0.0 for a door that doesn't close
+		float TriggerMass = 50.f;
 
 		float LastDoorOpenTime = 0.0f;
 
 		AActor* Owner; // The owning door
-		AActor* ActorThatOpens;
+
+		float UOpenDoor::GetTotalMassOfActorsOnPlate();
 };
