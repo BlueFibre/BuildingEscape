@@ -31,11 +31,6 @@ void UOpenDoor::BeginPlay()
 	} 
 }
 
-void UOpenDoor::OpenDoor()
-{
-	Owner->SetActorRotation(FRotator( 0.0f, OpenAngle, 0.0f ));
-}
-
 // Called every frame
 void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
 {
@@ -58,6 +53,12 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 	}
 }
 
+void UOpenDoor::OpenDoor()
+{
+	/// Owner->SetActorRotation( FRotator( 0.0f, OpenAngle, 0.0f ) );
+	OnOpenRequest.Broadcast();
+}
+
 void UOpenDoor::CloseDoor()
 {
 	// Set the door rotation
@@ -77,8 +78,6 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 	for (const auto* Actor : OverLappingActors)
 	{
 		TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
-		
-		UE_LOG( LogTemp, Warning, TEXT( "%s on pressureplate." ), *Actor->GetName());
 	}
 
 	return TotalMass;

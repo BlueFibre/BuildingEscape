@@ -25,6 +25,9 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	UPROPERTY( EditAnywhere, BluePrintReadOnly )
+		float OpenAngle = 90.0f;
+
 public:
 	// Called every frame
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
@@ -32,11 +35,7 @@ public:
 	UPROPERTY( BlueprintAssignable )
 		FOnOpenRequest OnOpenRequest;
 
-
 private:
-
-	UPROPERTY( EditAnywhere )
-		float OpenAngle = 90.0f;
 		
 		float CloseAngle;
 
