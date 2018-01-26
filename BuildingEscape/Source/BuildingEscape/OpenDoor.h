@@ -37,7 +37,7 @@ private:
 		float CloseAngle;
 
 	UPROPERTY( EditAnywhere )
-		ATriggerVolume* PressurePlate;
+		ATriggerVolume* PressurePlate = nullptr;
 
 	UPROPERTY( EditAnywhere )
 		//Set to 0.0 for a door that doesn't close
@@ -49,7 +49,7 @@ private:
 
 		float LastDoorOpenTime = 0.0f;
 
-		AActor* Owner; // The owning door
+		AActor* Owner = nullptr; // The owning door
 
 		float UOpenDoor::GetTotalMassOfActorsOnPlate();
 };
